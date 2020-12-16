@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import Header from './Header';
 import Order from './Order';
@@ -12,9 +13,14 @@ class App extends Component {
 		fishes: {},
 		order: {},
 	};
+
+	static propTypes = {
+		match: PropTypes.object,
+	};
+
 	componentDidMount() {
 		const { params } = this.props.match;
-		// Firest reinstate our local storage
+		// First reinstate our local storage
 		const localStorageRef = localStorage.getItem(params.storeId);
 		// console.log(localStorageRef);
 		if (localStorageRef) {
@@ -102,6 +108,7 @@ class App extends Component {
 					fishes={this.state.fishes}
 					updateFish={this.updateFish}
 					deleteFish={this.deleteFish}
+					storeId={this.props.match.params.storeId}
 				/>
 			</div>
 		);

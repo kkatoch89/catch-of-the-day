@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class EditFishForm extends Component {
+	static propTypes = {
+		fish: PropTypes.shape({
+			image: PropTypes.string,
+			name: PropTypes.string,
+			desc: PropTypes.string,
+			status: PropTypes.string,
+			price: PropTypes.number,
+		}),
+		updateFish: PropTypes.func,
+		index: PropTypes.string,
+	};
+
 	handleChange = (e) => {
 		// Take a copy of the current fish & then updated specific property by name
 		const updatedFish = {
@@ -33,7 +46,7 @@ class EditFishForm extends Component {
 					<option value="fresh">Fresh!</option>
 					<option value="unavailable">Sold Out!</option>
 				</select>
-				<input
+				<textarea
 					type="text"
 					name="desc"
 					onChange={this.handleChange}
